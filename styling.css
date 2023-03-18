@@ -5,49 +5,27 @@
 	text-decoration:none;
 	box-sizing: border-box;
 }
-
-.nav{
-	margin:0;
-	padding:0;
-	width:100vw;
-	background:white;
-	height:90px;
-}
 .logo{
 	float:left;
-	 line-height:80px;
+	line-height:63px;/*was 80*/
+	height:50px;
 }
-.container{
-	margin-top:-8px;
-	padding:0;
-	list-style: none;
-	
-}
-.ul{
-	margin-left:15vw;
-}
-.item{
-	color:black;
-	height:90px;
-	line-height: 85px;
-	display: inline;
-	margin-right:-4.3px;
-	font-size:20px;
-	padding: 35px 35px 35px 35px;
-}
-
-.item:hover{
-	border-bottom: solid;
-	border-bottom-width:2.4px;
-	color:darkorange;
-	background:#EFEFEF;
-	transition:.2s;
+.navbar-brand{
+	width: 25vw;
 }
 .search{
-	width:300px !important;
-	height:40px !important;
-	margin:22px 0 0 100px !important;
+	max-width:20vw;
 }
+/*Overridding search btn color*/
+.btn-outline-primary{
+	color: darkorange !important;
+	border-color: darkorange !important;
+}
+.btn-outline-primary:hover{
+	background-color:darkorange !important;
+		color:white !important;
+}
+/*Cart/Profile*/
 .material-icons{
 	color: black;
 }
@@ -55,131 +33,61 @@
 	color:darkorange;
 	transition:.2s;
 }
-body {
-  font-family: Arial;
-  margin: 0;
+.dropmenu_hover:active{
+	background-color: #f8f9fa !important;
+	color: darkorange !important;
 }
-
-* {
-  box-sizing: border-box;
+/*HOTDEALS*/
+.hot{
+	text-align:center;
+	font-size: 80px;
+	color:darkorange;
+	font-weight: bolder;
+	padding-bottom:10px;
+	text-shadow:4px 3px 0.5px black;
 }
-
-img {
-  vertical-align: middle;
+/*Slider*/
+.slider{
+	margin-right:12vw; 
+	margin-left:12vw; 
+	margin-top:-8px;
 }
-
-/* Position the image container (needed to position the left and right arrows) */
-.container {
-  position: relative;
+.slider_img{
+	height: 38vw;
 }
-
-/* Hide the images by default */
-.mySlides {
-  display: none;
-}
-
-/* Add a pointer when hovering over the thumbnail images */
-.cursor {
-  cursor: pointer;
-}
-
-/* Next & previous buttons */
-.prev,
-.next {
-  cursor: pointer;
-  position: absolute;
-  top: 40%;
-  width: auto;
-  padding: 16px;
-  margin-top: -50px;
-  color: white;
-  font-weight: bold;
-  font-size: 20px;
-  border-radius: 0 3px 3px 0;
-  user-select: none;
-  -webkit-user-select: none;
-  text-decoration: none;
-}
-
-/* Position the "next button" to the right */
-.next {
-  right: 12px;
-  border-radius: 3px 0 0 3px;
-}
-
-/* On hover, add a black background color with a little bit see-through */
-.prev:hover,
-.next:hover {
-  background-color: rgba(0, 0, 0, 0.8);
-}
-
-/* Number text (1/3 etc) */
-.numbertext {
-  color: #f2f2f2;
-  font-size: 12px;
-  padding: 8px 12px;
-  position: absolute;
-  top: 0;
-}
-
-/* Container for image text */
-.caption-container {
-  text-align: center;
-  background-color: #222;
-  padding: 2px 16px;
-  color: white;
-}
-
-.row:after {
-  content: "";
-  display: table;
-  clear: both;
-}
-
-/* Six columns side by side */
-.column {
-  float: left;
-  width: 16.66%;
-}
-
-/* Add a transparency effect for thumnbail images */
-.demo {
-  opacity: 0.6;
-}
-
-.active,
-.demo:hover {
-  opacity: 1;
-}
+/*Products*/
 .flex{
 	display:flex;
 	justify-content: center;
 	justify-content: space-evenly;
 	flex-wrap: wrap;
 }
-.box {
-  padding: 0px;
-  background-color: white;
-  transition: transform .2s; /* Animation */
-  width: 280px;
-  height: 350px;
-  margin: 30px auto;
+.box{
+    padding: 0px;
+    background-color: white;
+	transition: transform .2s; /* Animation */
+    width: 280px;
+    height: 280px;
+    margin: 45px auto;
+	border-radius:5px;
 }
-
 .box:hover {
-  transform: scale(1.2); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
-}
-.name{
-	position:relative;top:2%;right:-2%;
-	
-}
-.price{
-	position:relative;top:130%;left:58%;
+	box-shadow:0px 0px 25px #AAAAAA;
+    transform: scale(1.2); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
 }
 .img{
 	width:280px;
-	
+	border-radius:5px;
 }
+.name{
+	float: left;
+	padding-left: 4px;
+}
+.price{
+	padding-right: 4px;
+	float: right;
+}
+/*Footer*/
 .footer{
 	margin-top:80px;
 	width:100%;
@@ -189,77 +97,94 @@ img {
 	justify-content: space-around;
 	background:#111;
 }
-.search_ipad{
-	display:none;
-}
-.hot{
-	text-align:center;
-	font-size: 80px;
-	color:darkorange;
-	font-weight: bolder;
-	padding-bottom:10px;
-}
 .phone{
-	margin:15px 0px;
-	 float: left;
+	display: inline;
+	margin:15px 0px 0px 0px;
+	float: left;
 }
-.nmra{
+.num{
 	color: white;
 	display: inline;
-	padding:19px 8px;
+	float: right;
+	padding:18px 0px 0px 11px ;
 }
-@media(max-width:1025px){
-	.box{
-		margin-bottom:50px;
+/*PC View*/
+@media(min-width:991px){
+	.menu{ 
+		display: none !important;/*Hides shopping cart & profile from navbar*/
 	}
-	.ul{
-		display:none;
+	/*Home-Men-Women Style*/
+	.item{
+		color:black;
+		line-height: 50px;
+		display: inline;
+		margin-right:-16px; /*was 4.3*/
+		font-size:22px;
+		padding: 35px 35px 30px 35px;
 	}
+	.item:hover{
+		border-bottom: 3px solid darkorange !important;
+		border-bottom-width:2.4px;
+		color:darkorange;
+		background:#E5E5E5;
+		transition:.2s;
+	}
+}
+/*Tablets View*/
+@media(max-width:991px){
 	.search{
-		
-	 display:none !important;
-	}
-	.search_ipad{
-		display:flex !important;
-		justify-content:space-evenly !important;
+		max-width: 100% !important; 
 	}
 	.ipad{
-		display: none;
+		display: none;/*Hidding Cart-Profile*/
 	}
-	.nav{
-		display:flex;
-		justify-content: center;
+	/*Home-Men-Women Style*/
+	.item{
+		display: inline;
+		line-height: 30px;
+		font-size:22px;
+		padding: 10px 0px 10px 10px !important;
+		margin: -5px 0px -5px 0px !important;
 	}
-  }
-  @media(max-width:480px){
+	.menu_hover{
+		display: flex !important;
+	}
+	.menu_hover:hover{
+		border-radius: 10px;
+		background:#E5E5E5;
+		color:darkorange;
+		transition:.2s;
+	}
+	/*Slider Style*/
+	.slider{
+		margin-right:0vw; 
+		margin-left:0vw;
+	}
+	.slider_img{
+		height: 55vw;
+	}
+}
+/*Mobiles View*/
+@media(max-width:480px)
+{
+	.logo{
+		height:37px !important;
+	}
+	/*HOTDEALS*/
 	.hot{
 		display:block;
 		font-size:47px;
 	}
-	.next,.prev{
-		margin-top:0.85mm;
-	}
+	/*Footer*/
 	.iconmob{
 		width:28px;
 	}
 	.headmobile{
 		font-size: 19px;
 	}
-	.nmra{
-		font-size:12px;
-		line-height: 40px;;
+	.num{
+		padding:18px 0px 0px 7px ;
+		font-size:14px;
+		line-height: 20px;
 	}
-  }
-  @media(min-width:1580px){
-   .nav{
-	display:flex;
-	justify-content: center;
-	justify-content: space-evenly;
-   }
-   .logo{
-	align-self: left;
-   }
-  .hot{
-	text-align: center;
-  }
-  }
+}
