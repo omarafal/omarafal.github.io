@@ -11,15 +11,19 @@
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"><!--Google Icons-->
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css"><!--Bootstrap Icons-->
 	<link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet"><!--Navbar/Slider-->
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"><!--NavBar/Slider-->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"><!--Bootstrap (NavBar/Slider)-->
+	<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css"/><!--Animate On Scroll-->
+		
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script><!--NavBar/slider-->
+	<script src="https://unpkg.com/aos@next/dist/aos.js"></script><!--Animate On Scroll-->
+
 </head>
 <body class="p-0 m-0 border-0 bd-example">
 <header>
     <nav class="navbar navbar-expand-lg" style="background-color:#F1F1F1">
 		<div class="container-fluid">
 			<!--<span class="logo"><img src="../../Media/shoes/Media/logo.png" style="height:50px;"/></span>-->
-			<a class="navbar-brand" href="index.html"><span><img draggable="false" src="Media/logo.png" class="logo" draggalbe="false"/></span></a>
+			<a class="navbar-brand" href="home.html"><span><img draggable="false" src="Media/logo.png" class="logo" draggalbe="false"/></span></a>
 			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-	expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 			</button>
@@ -34,7 +38,7 @@
 					<a href="{% url 'shoes-men' %}" style="text-decoration: none;" class="nav-link active item_menu" aria-current="page">
 						<li class="item nav-item menu_hover">Women</li>
 					</a>
-					<a href="" style="text-decoration: none;" class="nav-link active item_menu menu" aria-current="page" >
+					<a href="shoppingCart.html" style="text-decoration: none;" class="nav-link active item_menu menu" aria-current="page" >
 						<li class="item nav-item menu_hover">Shopping Cart</li>
 					</a>
 					<li class="nav-item dropdown menu item">
@@ -42,7 +46,7 @@
 						Profile
 					  </a>
 						 <ul class="dropdown-menu">
-							<li><a class="dropdown-item dropmenu_hover" href="#">SignIn/SignUp</a></li>
+							<li><a class="dropdown-item dropmenu_hover" href="./sign_in.html">SignIn/SignUp</a></li>
 						 </ul>
 					</li>
 				</ul>
@@ -52,7 +56,7 @@
 				</form>
 			</div>
 			<li class="nav-item ipad">
-				 <a class="nav-link " href="#">
+				 <a class="nav-link " href="shoppingCart.html">
 					<i class="material-icons" style="font-size:42px;margin:5px 0px 0px 23px;">shopping_cart</i>
 				 </a>
 			</li>
@@ -61,7 +65,7 @@
 					<i class="bi bi-person-circle material-icons" style="font-size:38px; margin:0px 0px 0px 16px;"></i>
 				 </a>
 				 <ul class="dropdown-menu" style="margin:1.4vw 0vw 0vw -190%">
-					<li><a class="dropdown-item dropmenu_hover" href="#">SignIn/SignUp</a></li>
+					<li><a class="dropdown-item dropmenu_hover" href="./sign_in.html">SignIn/SignUp</a></li>
 				 </ul>
 			</li>
 		</div>
@@ -118,7 +122,7 @@
 		 </button>	
 	</div>
 	<!--NEW PRODUCTS-->
-    <h1 style="text-align:center;margin:20px;">NEW PRODUCTS</h1>
+    <div data-aos="zoom-in" data-aos-duration="600" data-aos-delay="0"><h1 style="text-align:center;margin:20px;">NEW PRODUCTS</h1></div>
     <div class="flex">
     <!--<div class="box"><img src="../../Media/shoes/Media/shoe1.png" class="img">
 			<p class="name">nike shoes<span class="price">225$</span></p>
@@ -129,28 +133,36 @@
         <div class="box"><img src="../../Media/shoes/Media/shoe3.png" class="img">
 			<p class="name">nike shoes<span class="price">225$</span></p>
 		</div>-->
-		<div class="box"><img src="Media/item1.jpg" class="img">
-			<div>
+		<div  data-aos="fade-up" data-aos-duration="600" data-aos-delay="100">
+			<div class="box"><img src="Media/item1.jpg" class="img">
+				<div>
 				<span class="name">Nike Air Force 1</span>
 				<span class="price">850 EGP</span>
+				</div>
 			</div>
 		</div>
-        <div class="box"><img src="Media/item2.jpg" class="img">
-			<div>
-				<span class="name">Nike Air Jordan IV</span>
-				<span class="price">600 EGP</span>
+		<div  data-aos="fade-up" data-aos-duration="600" data-aos-delay="200">
+			<div class="box "><img src="Media/item2.jpg" class="img">
+				<div>
+					<span class="name">Nike Air Jordan IV</span>
+					<span class="price">600 EGP</span>
+				</div>
 			</div>
 		</div>
-        <div class="box"><img src="Media/item3.jpg" class="img">
-			<div>
-				<span class="name">Nike M2K Tekno</span>
-				<span class="price">700 EGP</span>
+		<div  data-aos="fade-up" data-aos-duration="600" data-aos-delay="300">
+			<div class="box"><img src="Media/item3.jpg" class="img">
+				<div>
+					<span class="name">Nike M2K Tekno</span>
+					<span class="price">700 EGP</span>
+				</div>
 			</div>
 		</div>
-		<div class="box"><img src="Media/item4.jpg" class="img">
-			<div>
-				<span class="name">Nike Air</span>
-				<span class="price">650 EGP</span>
+		<div  data-aos="fade-up" data-aos-duration="600" data-aos-delay="400">
+			<div class="box"><img src="Media/item4.jpg" class="img">
+				<div>
+					<span class="name">Nike Air</span>
+					<span class="price">650 EGP</span>
+				</div>
 			</div>
 		</div>
     </div>
@@ -187,4 +199,7 @@
 		</span>
 </section>
 </body>
+	  <script>
+    AOS.init();
+  </script>
 </html>
