@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <link href="https://fonts.googleapis.com/css?family=Oswald:400,600" rel="stylesheet">
+        <link href="itempage.css" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="../styling.css"/>
+        <link rel="icon" type="image/x-icon" href="../Media/favicon.png">
+        <title>Shoezone</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"><!--Google Icons-->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css"><!--Bootstrap Icons-->
+        <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet"><!--Navbar/Slider-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"><!--NavBar/Slider-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script><!--NavBar/slider-->
+    </head>
+
+    <body>
+
+        <header>
+            <nav class="navbar navbar-expand-lg" style="background-color:#F1F1F1">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="../index.html"><span><img draggable="false" src="../Media/logo.png" class="logo" draggalbe="false"/></span></a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-	expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav ms-auto me-auto mb-1 mb-lg-10 justify-content-end">
+                            <a href="../index.html" style="text-decoration: none;" class="nav-link active item_menu" aria-current="page">
+                                <li class="item nav-item menu_hover">Home</li>
+                            </a>
+                            <a href="../men.html" style="text-decoration: none;" class="nav-link active item_menu" aria-current="page">
+                                <li class="item nav-item menu_hover">Men</li>
+                            </a>
+                            <a href="../women.html" style="text-decoration: none;" class="nav-link active item_menu" aria-current="page">
+                                <li class="item nav-item menu_hover">Women</li>
+                            </a>
+                                <a href="../shoppingCart.html" style="text-decoration: none;" class="nav-link active item_menu menu" aria-current="page" >
+                                    <li class="item nav-item menu_hover">Shopping Cart</li>
+                                </a>
+                            <li class="nav-item dropdown menu item">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: black">
+                                    Profile
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item dropmenu_hover" href="../sign_in.html" name="register">SignIn/SignUp</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <form class="d-flex input-group search" role="search" method=POST action="">
+
+                            <input class="form-control" type="search" placeholder="Search For a Brand" aria-label="Search" name="searched" />
+                            <button class="btn btn-outline-primary" type="submit" >Search</button>
+                        </form>
+                    </div>
+                    <script>
+                        function myfunction(){
+                            alert("Please Sign in :(");
+                        }
+                    </script>
+                    <li class="nav-item ipad">
+                        <a class="nav-link " href="../shoppingCart.html">
+                            <i class="material-icons" style="font-size:42px;margin:5px 0px 0px 23px;">shopping_cart</i>
+                        </a>
+                    </li>
+                    <li class="nav-item dropdown ipad" style="margin-top: -10px">
+                        <a class="nav-link " href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="bi bi-person-circle material-icons" style="font-size:38px; margin:0px 0px 0px 16px;"></i>
+                        </a>
+                        <ul class="dropdown-menu" style="margin:1.4vw 0vw 0vw -190%">
+                            <li><a class="dropdown-item dropmenu_hover" href="../sign_in.html" name="register">SignIn/SignUp</a></li>
+                        </ul>
+                    </li>
+                </div>
+            </nav>
+        </header>
+        <div>
+            
+                <div class="container" style="margin-top:60px">
+                  <div class="product-image ">
+                      <img src="../Media/shoes_images/4_pink.png" alt="" class="product-pic">
+                      <div class="dots">
+                    </div>
+                  </div>
+    
+                  <div class="product-details shadow1">
+                    <header>
+                      <h1 class="title">M2K</h1>
+                      <div class="colorCat">Pink</div>
+                      <div class="price" style="float:left;">
+                        <span class="current">EGP 450</span>
+                      </div>
+                    </header>
+                
+                
+                
+                
+                
+                
+                      <div class="controls">
+                          <div class="size" style="max-width: 10vw;">
+                              <h5>size</h5>
+                              <h6>40, 41, 42, 43, 44, 45</h6>
+                          </div>
+                      </div>
+                      <div class="color">
+                          <h5>color</h5>
+                          <ul>
+                                  
+                                      <li class="colors color-bdot1 active" style="margin: 20px 0px 20px -17px; background-color: Pink;box-shadow: 0 0 0 3px white, 0 0 0 5px black"></li>
+                                  
+                          </ul>
+                          <div class="footer1" style="margin-top: 50px">
+                              
+                                  <input type="hidden" name="csrfmiddlewaretoken" value="QcJnx62N2oKFpjE0IYjbEQokIm0of6YE9OGjwBTFOvVPFCnyNmTdJ3Y0vqjDfZqg">
+                                  <a href="" style="text-decoration: none; display: inline" onclick="myfunction()">
+                                      <button type="button">
+                                          <img src="http://co0kie.github.io/codepen/nike-product-page/cart.png" alt="">
+                                          <span>add to cart</span>
+                                      </button>
+                                  </a>
+                              
+                                  
+                          </div>
+                      </div>
+                  </div>
+                </div>
+            
+        </div>
+
+        <footer class="footer">
+    
+            <span style="margin: 20px 0 0 20px">
+                <section style="color: white; font-weight: bold;"><h3 class="headmobile ">Social Media</h3></section>
+                <section style="text-align: center"><a href="https://www.instagram.com/shoe.zone21/?igshid=YmMyMTA2M2Y%3D" target="_blank"><img class="iconmob" src="../Media/instagram.png" style="margin: 15px 0px;"></a></section>
+                <section style="text-align: center"><a href="https://www.facebook.com/profile.php?id=100064368121508&amp;mibextid=ZbWKwL" target="_blank"><img class="iconmob" src="../Media/facebook.png" style="margin: 15px 0px;"></a></section>
+            </span>
+    
+            <span style="margin: 20px 0 0 20px">
+                <section style="color: white; font-weight: bold;"><h3 class="headmobile ">Location</h3></section>
+                <section section="" style="text-align: center"><a href="https://www.google.com/maps/place/30%C2%B003'39.4%22N+31%C2%B020'03.9%22E/" target="_blank">
+                <img class="iconmob" src="../Media/Location.png" style="margin:15px 0px;"></a></section>
+            </span>
+    
+            <span style="margin: 20px 0 0 25px">
+                <section style="color: white; font-weight: bold;"><h3 class="headmobile" style="text-align: center">Contact Us</h3></section>
+                <section><img src="../Media/telephone.png" class="iconmob phone"><h5 class="num">01022611981</h5></section>
+            </span>
+    
+        </footer>
+        <section style="background-color: #111; height: 70px; text-align: center">
+            <span style="display: inline">
+                <img src="../Media/QubeLogo.png" style="height: 64px;align-self: center; "><p style="color:white;display: inline">TeamQUBE®</p>
+                </span>
+        </section>
+
+    </body>
+</html>
