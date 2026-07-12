@@ -1,7 +1,6 @@
 ---
 title: A summary of the modern CPU
 draft: false
-tags:
 ---
 # Instructions from the processor's POV
 
