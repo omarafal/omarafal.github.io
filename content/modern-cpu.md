@@ -1,5 +1,5 @@
 ---
-title: A summary of the modern CPU
+title: A quick look into the modern CPU
 draft: false
 ---
 # Instructions from the processor's POV
@@ -214,20 +214,22 @@ Recall how we mentioned before that `inst1` is a memory operation instruction an
 But the catch here is the CPU doesn't yet know what to execute; which branch to choose. It doesn't yet have the value of `rax` to be able to determine the outcome of the condition in `inst3`.
 So what it does is it *speculates* the outcome of that comparison and chooses a branch to execute. This is <u>a type of</u> **speculative execution** called **branch prediction** and sometimes **control-flow speculation**.
 
-There is a dedicated [branch predictor](https://en.wikipedia.org/wiki/Branch_predictor) inside the CPU that is responsible for these conditions but I won't go into details about it here.
+There is a dedicated [branch predictor](https://en.wikipedia.org/wiki/Branch_predictor) inside the CPU that is responsible for these predictions but I won't go into details about it here.
 
 So the CPU makes a "prediction" and chooses a branch and executes it. Let's assume here the CPU guesses that `inst5` was going to run.
 
 A good question arises here is what happens if this prediction was wrong? The CPU guessed the outcome and it found out later that it chose the wrong path.
 
-The CPU simply discards the results of its guess and rewinds back its state to what it was before it made the guess. `inst5` is now called a **transient instruction** since it was mispredicted that it was going to be executed and only existed for the time that the CPU guessed it was going to execute.
+The CPU simply discards the results of its guess and rewinds back its state to what it was before it made the guess. `inst5` is now called a **transient instruction** since it was mis-predicted that it was going to be executed and only existed for the time that the CPU guessed it was going to execute.
 
-However, a small problem here occurs when not all results could be ignored.
-For example, if a transient instruction accesses memory, some data may be brought into 
-the cache and its data would live on.
+However, a small problem occurs when not all results of a transient instruction could be ignored.
+For example, if a transient instruction accesses memory, some data might be brought into 
+the cache and it would live on for a little longer than it should.
 
----
-Now an important thing to note here is that speculative execution is not limited to branch prediction, branch prediction is merely a type of speculative execution.
+An important thing to note here is that speculative execution is not limited to branch prediction, branch prediction is merely a type of speculative execution.
+
+> [!info] Remember
+> Dependency chains occur at the micro-operation level, not at the instruction level. This is important to keep in mind when reading through an attack like Meltdown.
 
 Sources:
 - https://www.lighterra.com/papers/modernmicroprocessors/
@@ -237,4 +239,3 @@ Sources:
 - https://pages.cs.wisc.edu/~fischer/cs701.f14/lectures/L18.pdf
 - https://www.intel.com/content/www/us/en/developer/articles/technical/software-security-guidance/technical-documentation/hardware-behavior-related-to-speculative-execution.html
 - https://www.intel.com/content/www/us/en/developer/articles/technical/software-security-guidance/best-practices/refined-speculative-execution-terminology.html
-
