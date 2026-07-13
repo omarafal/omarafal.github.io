@@ -138,6 +138,30 @@ But we have mentioned before that we should maximize the performance/output of t
 This is where **out-of-order execution** comes into play.
 
 # Out-of-order Execution
+
+## Out-of-order
+For the next couple of sections, let's make things easier a bit by assuming that each instruction as a whole either depends on a value from a previous instruction or it doesn't.
+
+Let's go back to our example and add one more instruction:
+```asm
+inst1: movzx eax, BYTE PTR [rbx]
+inst2: add rax, QWORD PTR [0x1337]
+inst3: mov rax, 10
+```
+
+Following our assumption,  `inst2` depends on `inst1` and we need to fill in the bubble-ed space between them so as not to leave any stage idle.
+
+We can do that by bringing in *another* instruction, that has no dependency on either of them, and place it between them.
+
+This is what **out-of-order execution** is all about.
+
+Can we use `inst3` to do that?\
+Keep in mind that we can not put an instruction that has a dependency on either `inst1` or `inst2`. The CPU might look at it and see `rax` and say no, `inst3` also needs `rax`.
+But this is not true (*false*) since we are not *using* the value in `rax`, we are assigning a new one. This is known as a **false dependency**.
+
+But wait, wouldn't executing `inst3` before `inst2` make `inst2` use an incorrect value?
+
+No! It all works out in the end due to **register renaming**.
 ## Register Renaming
 Get ready, because if you have been reading assembly for a while now, this is going to blow your mind.
 
@@ -153,57 +177,50 @@ rdi -> Physical Register 14
 rsi -> Physical Register 45
 rdx -> Physical Register 90
 ```
-Where the registers `rdi, rsi, rdx` get *renamed* to those physical registers at some point when instructions enter the pipeline.
+Where the registers `rdi, rsi, rdx` get *renamed* to those physical registers at some point when instructions enter the pipeline. That renaming changes constantly.
 
 Why is this important?
 
-## Out-of-order
-Let's take a look at our last example again:
+All of these instructions might be sharing the same "architectural" register name but they are mapped to different physical registers inside the CPU and those physical registers are the ones that hold the actual values that we need.
+
+So for our last example:
 ```asm
 inst1: movzx eax, BYTE PTR [rbx]
 inst2: add rax, QWORD PTR [0x1337]
+inst3: mov rax, 10
 ```
-
-Recall how `inst2` depends on `inst1` and we need to fill in the bubble-ed space so as not to leave any stage idle, we can bring in *another* instruction, that has no dependency on either of them, and place it between them.
-This is known as **out-of-order execution**.
-
-Can we use `inst3` to do that?
-Keep in mind that we can not put an instruction that has a dependency on either `inst1` or `inst2`. The CPU might look at it and see `rax` and say no, `inst3` also needs `rax`.
-But this is not true (*false*) since we are not *using* the value in `rax`, we are assigning a new one. This is known as a **false dependency**.
-
-But wait, wouldn't executing `inst3` before `inst2` make `inst2` use an incorrect value?
-No! It all works out in the end due to **register renaming** that we talked about earlier.
-All of these instructions might be sharing the same "architectural" register name but they are mapped to different physical registers inside the CPU and those physical registers are the ones that hold the actual values that we need.
+It's absolutely fine to run `inst3` before `inst2` since each one of those `rax` registers are mapped to different physical registers.
 
 Pretty cool huh?
+# Speculative Execution
+## Branch Prediction
+Now what if `inst3` in our last example was a branching instruction?
 
-Now what if `inst3` was a branching instruction? More specifically a *conditional* branching instruction.
-
-Let's use the same example as last time but we'll change a couple of things:
-
+Let's apply that and also change a couple of things:
 ```asm
-inst1: mov rax, QWORD PTR [rbx]
-inst2: cmp rax, 2
-inst3: je DOUBLE
-inst4: add rax, 4
+inst1: movzx eax, BYTE PTR [rbx]
+inst2: add rax, QWORD PTR [0x1337]
+inst3: cmp rax, 2
+inst4: je DOUBLE
+inst5: add rax, 4
        DOUBLE:
-inst5: add rax, 8
+inst6: add rax, 8
 ```
 
-Here we can see that we jump to the branch called `DOUBLE` based on some condition, in our case if the register `rax` contains the value 2. If it doesn't we continue on with our execution of add 4 to `rax`.
+Here we can see that we jump to the branch called `DOUBLE` based on some condition, in our case if the register `rax` contains the value 2. If it doesn't we continue on with our execution of `inst5`.
 
-Recall how we mentioned before that `inst1` is load from memory instruction and those usually take a long time (relatively) so we would like to move on and see what else we can execute.
+Recall how we mentioned before that `inst1` is a memory operation instruction and those usually take a long time (relatively) so we would like to move on and see what else we can execute while it finishes.
 
-But the catch here is the CPU doesn't yet know what to execute, which branch to choose. It doesn't yet have the value of `rax` to be able to determine the outcome of the condition.
-So what it does is it *speculates* the outcome of that comparison and chooses a branch to execute. This is <u>a type of</u> **speculative execution** called **control-flow speculation**.
+But the catch here is the CPU doesn't yet know what to execute; which branch to choose. It doesn't yet have the value of `rax` to be able to determine the outcome of the condition in `inst3`.
+So what it does is it *speculates* the outcome of that comparison and chooses a branch to execute. This is <u>a type of</u> **speculative execution** called **branch prediction** and sometimes **control-flow speculation**.
 
 There is a dedicated [branch predictor](https://en.wikipedia.org/wiki/Branch_predictor) inside the CPU that is responsible for these conditions but I won't go into details about it here.
 
-So the CPU makes a "prediction" and chooses a branch and executes it. Let's assume here the CPU guesses that `inst4` was going to run.
+So the CPU makes a "prediction" and chooses a branch and executes it. Let's assume here the CPU guesses that `inst5` was going to run.
 
 A good question arises here is what happens if this prediction was wrong? The CPU guessed the outcome and it found out later that it chose the wrong path.
 
-The CPU simply discards the results of its guess and rewinds back its state to what it was before it made the guess. `inst4` is now called a **transient instruction** since it was mispredicted that it was going to be executed and only existed for the time that the CPU guessed it was going to execute.
+The CPU simply discards the results of its guess and rewinds back its state to what it was before it made the guess. `inst5` is now called a **transient instruction** since it was mispredicted that it was going to be executed and only existed for the time that the CPU guessed it was going to execute.
 
 However, a small problem here occurs when not all results could be ignored.
 For example, if a transient instruction accesses memory, some data may be brought into 
@@ -211,12 +228,6 @@ the cache and its data would live on.
 
 ---
 Now an important thing to note here is that speculative execution is not limited to branch prediction, branch prediction is merely a type of speculative execution.
-
-A transient instruction is also jut 
-
----
-
-Should I mention reorder buffer?
 
 Sources:
 - https://www.lighterra.com/papers/modernmicroprocessors/
