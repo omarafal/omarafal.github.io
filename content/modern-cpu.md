@@ -48,7 +48,8 @@ They form something called a **dependency chain**.
 
 So far, we saw the instruction going through three "stages". It was fetched then decoded and finally executed:
 
-![[/imgs/Pasted image 20260712181146.png|340]]
+![[/imgs/Pasted image 20260714140842.png|600]]
+
 
 All these different "stages" are a part of something called the **CPU pipeline**.
 
@@ -65,7 +66,7 @@ The processor can take advantage of that empty stage by beginning to fetch `inst
 
 Now both `inst1` and `inst2` are inside the CPU which is against our original belief that the CPU works on one instruction at a time.
 
-![[/imgs/Pasted image 20260712181111.png|340]]
+![[/imgs/Pasted image 20260714140942.png|600]]
 
 Without going into a lot of details, it's worth noting that the execution stage in the pipeline itself is made up of different execution units, each responsible for different kinds of work such as arithmetic operations, memory access operations, etc.\
 Many of these execution units are themselves pipelined.
