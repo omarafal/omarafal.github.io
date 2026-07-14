@@ -1,6 +1,7 @@
 ---
 title: A quick look into the modern CPU
 draft: false
+date: 2026-07-13
 ---
 # Instructions from the processor's POV
 
