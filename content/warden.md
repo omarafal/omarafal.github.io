@@ -7,15 +7,17 @@ This is a really interesting challenge that involves exploiting a certain versio
 This was part of "FahemSec CTF 2026".
 
 ---
-So once we launch the instance we are greeted with the following:
+Once we launch the instance we are greeted with the following:
 
 ![[Pasted image 20260801185051.png]]
 
 Which mentions that there's a copy of `sudo` installed... hmm kinda suspicious.
 
-So then we can check out what version of `sudo` is used here:
+So naturally, we follow whatever lead we might have. We can check out what version of `sudo` is used here:
 
 ![[Pasted image 20260801185108.png]]
+
+This shows `sudo 1.9.17`.
 
 We can then take that version and go ask our bestfriend, google, if there's anything related to it.
 And literally the first result we see is:
@@ -31,11 +33,15 @@ In the mentioned versions of `sudo`, the `-R` (also known as `--chroot`) option 
 
 ![[Pasted image 20260801185148.png]]
 
-The thing is, `sudo` doesn't actually check if we have the required permissions before changing our root, it just does it anyways so it changes the root and THEN runs the command.
+The thing is, `sudo` doesn't actually check if we have the required permissions before changing our root, it just does it anyways. So it changes the root and THEN tries to run the command we specified.
 
-Now an interesting thing happens when `sudo` changes our root directory, it loads the file in `/etc/nsswitch.conf` (see: [Name Service Switch](https://en.wikipedia.org/wiki/Name_Service_Switch)) from within the new root directory. This allows us to put whatever we want in that file and it would be loaded.
+Now an interesting thing happens when `sudo` changes our root directory, it loads the file in `/etc/nsswitch.conf` (see: [Name Service Switch](https://en.wikipedia.org/wiki/Name_Service_Switch)) from within the new root directory. This file lists where a bunch of important data (like the data of `passwd`, `shadow`, `group`) could be found.
 
-Here's we are going to exploit this challenge:
+However, instead of, for example, saying that `passwd` exists over at `/etc/passwd`, we can tell the **NSS subsystem** to query a certain module for this information. That would cause it to *load up* that module.
+
+This means that we can put our own custom module that would be loaded up.
+
+Here's how we are going to exploit this challenge:
 
 First we can make our malicious directories using `mkdir -p woot/etc libnss_`
 
@@ -44,11 +50,11 @@ Then we put this in the file that we mentioned `woot/etc/nsswitch.conf` but insi
 passwd: /woot1337
 ```
 
-This tells glibc where to look when it needs to check information about users. Here, glibc will interpret our entry as an NSS module name and it would look for that module in the directory that we created `libnss_`.
+This tells `glibc` where to look when it needs to check information about users. Here, `glibc` will interpret our entry as an NSS module name and it would look for that module in the directory that we created `libnss_` to query it.
 
-So all in all, it would look for the `libnss_/woot1337.so.2` module.
+So in short, it would look for our custom NSS module `libnss_/woot1337.so.2` module.
 
-We aren't done yet, we have the most important part yet to create, the module.
+We aren't done yet, we have the most important part yet to create, the module itself.
 
 We can create a file called `exploit.c` and put the following in it:
 ```C
@@ -63,9 +69,9 @@ __attribute__((constructor)) void woot(void){
 	
 }
 ```
-Here we `constructor` basically tells GCC to run this function automatically once the shared library is loaded.
+Here the `constructor` basically tells GCC to run this function automatically once the shared library is loaded.
 
-Then inside this function we change our real user and group IDs to `0` effectively making us root.
+Then inside this function we change our real user and group IDs to `0`, effectively making us root.
 
 We then change our directory to the root directory and get a shell.
 
@@ -78,7 +84,9 @@ We can do so like this:
 gcc -shared -fPIC -o libnss_/woot1337.so.2 exploit.c
 ```
 
-This creates our shared library. BOOM! Haha, not yet.
+This creates our shared library under the directory that we mentioned before.
+
+One more step though.
 
 We still need to actually use the `-R` option, remember that? The option that this whole thing is about?
 
