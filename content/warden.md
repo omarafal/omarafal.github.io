@@ -4,7 +4,9 @@ draft: false
 date: 2026-08-01
 ---
 This is a really interesting challenge that involves exploiting a certain version of `sudo`.
+This was part of "FahemSec CTF 2026".
 
+---
 So once we launch the instance we are greeted with the following:
 
 ![[Pasted image 20260801185051.png]]
@@ -90,6 +92,11 @@ sudo -R woot woot
 This changes our root to `woot` that we created. The second `woot` is just a dummy one, doesn't matter much, our exploit runs before it even gets to trying to run the second `woot`.
 
 And this is it! We get a shell as `root` and we cat the flag!
+
+> [!info] Note
+> The exploit was successfully verified locally. The remote instance unfortunately kept terminating during the compilation step, preventing flag retrieval. The exploitation technique itself is fully demonstrated above."
+
+![[Pasted image 20260801193301.png]]
 
 ---
 PoC credit:\
