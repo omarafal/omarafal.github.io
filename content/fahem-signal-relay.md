@@ -75,7 +75,7 @@ p.interactive()
 The distance between the start of our buffer `g_node` and the function pointer `data_4040a8` that want to overwrite is 40 bytes.\
 So I put `/bin/sh\x00`, which is 8 bytes, at the start of our buffer. This allowed me to be able to have a controllable string at an address that I already know which is `g_node` (`0x404080`).
 
-That leaves us with an empty of space of 32 bytes which I just filled with garbage.
+That leaves us with an empty space of 32 bytes which I just filled with garbage.
 
 Like I mentioned, the distance between `g_node` and our function pointer is 40 bytes or `0x28` bytes. Recall how at the start of `relay_bootstrap` it puts the value of `rdi+0x28` in `rbp`.
 
