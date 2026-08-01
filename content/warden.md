@@ -1,5 +1,5 @@
 ---
-title: FahemSec CTF - warden (Pwn)
+title: FahemSec CTF - warden
 draft: false
 date: 2026-08-01
 ---
@@ -90,3 +90,7 @@ sudo -R woot woot
 This changes our root to `woot` that we created. The second `woot` is just a dummy one, doesn't matter much, our exploit runs before it even gets to trying to run the second `woot`.
 
 And this is it! We get a shell as `root` and we cat the flag!
+
+---
+PoC credit:\
+https://github.com/pr0v3rbs/CVE-2025-32463_chwoot/blob/main/sudo-chwoot.sh
