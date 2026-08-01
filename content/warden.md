@@ -105,5 +105,10 @@ And this is it! We get a shell as `root` and we cat the flag!
 ![[Pasted image 20260801193301.png]]
 
 ---
+In the end, despite facing issues with the challenge instance (you win some you lose some, I guess) I really enjoyed this challenge and enjoyed tackling it.
+
+*chef's kiss*
+
+---
 PoC credit:\
 https://github.com/pr0v3rbs/CVE-2025-32463_chwoot/blob/main/sudo-chwoot.sh
