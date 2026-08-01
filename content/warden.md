@@ -6,15 +6,18 @@ date: 2026-08-01
 This is a really interesting challenge that involves exploiting a certain version of `sudo`.
 
 So once we launch the instance we are greeted with the following:
+
 ![[Pasted image 20260801185051.png]]
 
 Which mentions that there's a copy of `sudo` installed... hmm kinda suspicious.
 
 So then we can check out what version of `sudo` is used here:
+
 ![[Pasted image 20260801185108.png]]
 
 We can then take that version and go ask our bestfriend, google, if there's anything related to it.
 And literally the first result we see is:
+
 ![[Pasted image 20260801185130.png]]
 
 Here's the link for anyone interested:
@@ -23,6 +26,7 @@ https://www.sentrium.co.uk/labs/sudo-chwoot-1-9-17-local-privilege-escalation
 Basically, to simplify everything, certain versions of `sudo` (this one included) are prone to a `chwoot` attack which exploits the `-R` option of `sudo`.
 
 In the mentioned versions of `sudo`, the `-R` (also known as `--chroot`) option changes the root before running the command that we specify:
+
 ![[Pasted image 20260801185148.png]]
 
 The thing is, `sudo` doesn't actually check if we have the required permissions before changing our root, it just does it anyways so it changes the root and THEN runs the command.
