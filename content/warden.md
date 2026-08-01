@@ -94,7 +94,7 @@ This changes our root to `woot` that we created. The second `woot` is just a dum
 And this is it! We get a shell as `root` and we cat the flag!
 
 > [!info] Note
-> The exploit was successfully verified locally. The remote instance unfortunately kept terminating during the compilation step, preventing flag retrieval. The exploitation technique itself is fully demonstrated above."
+> The exploit was successfully verified locally. The remote instance unfortunately kept terminating during the compilation step, preventing flag retrieval. The exploitation technique itself is fully demonstrated above.
 
 ![[Pasted image 20260801193301.png]]
 
