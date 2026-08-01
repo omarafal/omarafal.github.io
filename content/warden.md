@@ -82,8 +82,6 @@ This creates our shared library. BOOM! Haha, not yet.
 
 We still need to actually use the `-R` option, remember that? The option that this whole thing is about?
 
-Anyways.
-
 After having everything in place we can run:
 ```bash
 sudo -R woot woot
