@@ -3,11 +3,11 @@ title: FahemSec CTF - warden
 draft: false
 date: 2026-08-01
 ---
-This is a really interesting challenge that involves exploiting a certain version of `sudo`.
-This was part of "FahemSec CTF 2026".
+This was a really interesting challenge from "FahemSec CTF 2026" that involved exploiting a certain version of `sudo`, specifically the `chroot` feature.\
+The vulnerability is sometimes called `chwoot` ([CVE-2025-32463](https://nvd.nist.gov/vuln/detail/CVE-2025-32463)).
 
 ---
-Once we launch the instance we are greeted with the following:
+Once we launch the challenge instance we are greeted with the following:
 
 ![[Pasted image 20260801185051.png]]
 
